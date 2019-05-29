@@ -2,6 +2,7 @@ import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 import uuid from 'uuid';
+import './components/TodoComponents/Todo.css';
 
 class App extends React.Component {
 	constructor(props) {
@@ -40,7 +41,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="TodoWrapper">
 				<TodoList toDoList={this.state.toDoList} />
 				<TodoForm
 					toDoList={this.state.toDoList}
