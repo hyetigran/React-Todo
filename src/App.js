@@ -35,21 +35,24 @@ class App extends React.Component {
 		});
 	};
 
-	// removeItemhandler()=> {
-
-	// }
+	removeItemHandler = id => {
+		const newToDoList = this.state.toDoList.filter(el => el.id !== id);
+		this.setState({
+			friendsList: newToDoList
+		});
+	};
 
 	render() {
 		return (
 			<div className="TodoWrapper">
-				<TodoList toDoList={this.state.toDoList} />
 				<TodoForm
 					toDoList={this.state.toDoList}
 					changeHandler={this.changeHandler}
 					selectHandler={this.selectHandler}
 					addTask={this.addTaskHandler}
-					clearItem={this.clearItem}
+					// clearItem={this.clearItem}
 				/>
+				<TodoList toDoList={this.state.toDoList} removeItemHandler={this.removeItemHandler} />
 			</div>
 		);
 	}

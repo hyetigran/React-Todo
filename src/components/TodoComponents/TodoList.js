@@ -1,11 +1,16 @@
 import React from 'react';
 import './Todo.css';
 
-function TodoList({ toDoList, onToggle }) {
+function TodoList({ toDoList, removeItemHandler, onToggle }) {
 	return (
 		<div>
 			<h3>My ToDo List:</h3>
-			{toDoList.map(el => <div key={el.id}>{el.task}</div>)}
+			{toDoList.map(el => (
+				<div key={el.id}>
+					{el.task}
+					<button onClick={() => removeItemHandler(el.id)}>Clear</button>
+				</div>
+			))}
 		</div>
 	);
 }

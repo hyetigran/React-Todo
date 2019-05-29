@@ -8,7 +8,7 @@ function TodoForm({ toDoTask, changeHandler, addTask, clearItem, selectHandler }
 				{toDoTask}
 			</input>
 			<button onClick={addTask}>Add to List</button>
-			<button onClick={clearItem}>Clear</button>
+			{/* <button onClick={clearItem}>Clear</button> */}
 		</div>
 	);
 }
