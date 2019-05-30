@@ -50,6 +50,11 @@ class App extends React.Component {
       }),
     }));
   }
+  clearAllCompletedHandler = () => {
+    this.setState(currentState => ({
+      toDoList: currentState.toDoList.filter(task => task.isNotComplete)
+    }));
+  }
 
 	render() {
 		return (
@@ -68,6 +73,7 @@ class App extends React.Component {
             removeItemHandler={this.removeItemHandler} />
         ))
         }
+         <button onClick={this.clearAllCompletedHandler}>Clear All Completed Tasks</button>
 			</div>
 		);
 	}
