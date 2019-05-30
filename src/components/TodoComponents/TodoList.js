@@ -1,20 +1,19 @@
 import React from 'react';
 import './Todo.css';
 
-function TodoList({ toDoList, removeItemHandler, onToggle }) {
+function TodoList({ task, removeItemHandler, markCompleteHandler }) {
+
+  const isCompletedStyle = {
+    textDecoration: task.isNotComplete ? 'none' : 'line-through',
+  }
 	return (
-		<div>
-			<h3>My ToDo List:</h3>
-			{toDoList.map(el => (
-				<div key={el.id}>
-					{el.task}
-					<button onClick={() => removeItemHandler(el.id)}>Clear</button>
-				</div>
-			))}
-		</div>
+		<ul>
+      <li>
+					<span style={isCompletedStyle} onClick={() => markCompleteHandler(task.id)}>{task.task}</span>
+					<button onClick={() => removeItemHandler(task.id)}>Clear</button>
+      </li>
+    </ul>
 	);
 }
 
 export default TodoList;
-
-//onToggle={onToggle ? onToggle : null} className={'someClass'}

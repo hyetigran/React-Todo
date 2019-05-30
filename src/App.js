@@ -9,7 +9,8 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			toDoList: [],
-			toDoTask: 'Enter your task'
+      toDoTask: '',
+      isNotComplete: true,
 		};
 	}
 	changeHandler = event => {
@@ -17,42 +18,56 @@ class App extends React.Component {
 			toDoTask: event.target.value
 		});
 	};
-	// selectHandler = event => {
-	// 	this.setState({
-	// 		toDoTask: ''
-	// 	});
-	// };
+
 	addTaskHandler = () => {
 		const newTask = {
 			id: uuid(),
-			task: this.state.toDoTask
+      task: this.state.toDoTask,
+      isNotComplete: true,
 		};
 		const newToDoList = this.state.toDoList.concat(newTask);
 
 		this.setState({
 			toDoList: newToDoList,
-			toDoTask: 'Enter Your Task'
+			toDoTask: ''
 		});
 	};
 
 	removeItemHandler = id => {
 		const newToDoList = this.state.toDoList.filter(el => el.id !== id);
 		this.setState({
-			friendsList: newToDoList
+			toDoList: newToDoList
 		});
-	};
+  };
+  
+  markCompleteHandler = id => {
+    this.setState(currentState => ({
+      toDoList: currentState.toDoList.map(task => {
+        if (task.id === id) {
+          task.isNotComplete = false;
+        }
+        return task;
+      }),
+    }));
+  }
 
 	render() {
 		return (
 			<div className="TodoWrapper">
+        <h3>My ToDo List:</h3>
 				<TodoForm
 					toDoList={this.state.toDoList}
 					changeHandler={this.changeHandler}
 					selectHandler={this.selectHandler}
 					addTask={this.addTaskHandler}
-					// clearItem={this.clearItem}
-				/>
-				<TodoList toDoList={this.state.toDoList} removeItemHandler={this.removeItemHandler} />
+				/>{this.state.toDoList.map(task => (
+          <TodoList
+            key={task.id}
+            task={task}
+            markCompleteHandler={this.markCompleteHandler}
+            removeItemHandler={this.removeItemHandler} />
+        ))
+        }
 			</div>
 		);
 	}
