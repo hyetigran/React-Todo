@@ -4,7 +4,7 @@ import './Todo.css';
 function TodoForm({ toDoTask, changeHandler, addTask, clearItem, selectHandler }) {
 	return (
 		<div>
-			<input value={toDoTask} onChange={changeHandler} onSelect={selectHandler} type="text">
+			<input value={toDoTask} onChange={changeHandler} placeholder="Enter your task" type="text">
 				{toDoTask}
 			</input>
 			<button onClick={addTask}>Add to List</button>
